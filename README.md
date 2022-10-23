@@ -1,9 +1,9 @@
 <<<<<<< HEAD
 EQUIO:
-CAMILO MARTINEZ
-HERNAN HINCAPIE
-JULIO CUEVAS
-MICHAEL LOPEZ
+CAMILO MARTINEZ-
+HERNAN HINCAPIE-
+JULIO CUEVAS-
+MICHAEL LOPEZ-
 NICOLAS LOSADA
 
 Desarrollo de App Móviles para el programa de MinTic y la universidad de Antioquia
