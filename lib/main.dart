@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projectc4/pages/login_page.dart';
+
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Inicio());
 }
 
 class MyApp extends StatelessWidget {
@@ -65,3 +68,25 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class Inicio extends StatelessWidget {
+  const Inicio({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Container(
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: LoginPage(),
+            //body:Login(),
+          ),
+        )
+    );
+  }
+}
+
+
+
+
