@@ -9,7 +9,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  @override
   void initState() {
     _closeSplash();
     super.initState();
