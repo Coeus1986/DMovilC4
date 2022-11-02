@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projectc4/pages/login_page.dart';
+import 'package:projectc4/pages/register_page.dart';
+import 'package:projectc4/pages/splash_page.dart';
 
 
 
 void main() {
-  runApp(const Inicio());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,15 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Conocer.com',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const SplashPage(),
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -79,7 +79,7 @@ class Inicio extends StatelessWidget {
         home: Container(
           child: Scaffold(
             backgroundColor: Colors.white,
-            body: LoginPage(),
+            //body: SplashPage(),
             //body:Login(),
           ),
         )
