@@ -35,8 +35,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   controller: user,
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.account_circle),
-                    hintText: "Usuario",
+                    prefixIcon: Icon(Icons.mail_rounded),
+                    hintText: "Correo electrónico",
                   ),
                 )),
             Container(
