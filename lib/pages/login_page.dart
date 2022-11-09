@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projectc4/pages/detail_page.dart';
 import 'package:projectc4/pages/list_page.dart';
 import 'package:projectc4/pages/register_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 
