@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projectc4/pages/login_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:projectc4/pages/registerbduser.dart';
+
+import '../repository/registrousuariofirebase.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -10,9 +12,44 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  RegistroUsuarioFirebase objetorufb=RegistroUsuarioFirebase();
   final user=TextEditingController();
   final password=TextEditingController();
   final password2=TextEditingController();
+  String usu="";
+  String cla="";
+  void registrarUsuario()async{
+
+    if(password.value == password2.value){
+      usu=user.text;
+      cla=password.text;
+      final datos=await objetorufb.registrarusuarios(usu, cla);
+      if(datos=="weak-password"){
+        Fluttertoast.showToast(msg: "La contraseña debe tener minimo 6 caracteres",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+      }
+      else if(datos=="email-already-in-use"){
+        Fluttertoast.showToast(msg: "El email ya existe",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+      }
+      else if(datos=="invalid-email"){
+        Fluttertoast.showToast(msg: "El email no es valido",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+      }
+      else if(datos=="network-request-failed"){
+        Fluttertoast.showToast(msg: "No hay conexión",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+      }
+      else if(datos=="user-not-found"){
+        Fluttertoast.showToast(msg: "El usuario no existe",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+      }
+      else{
+        var pk=datos;
+        print('Datos de la PK${pk}');
+        Fluttertoast.showToast(msg: "Datos registrados",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterBDUser(pk)));
+      }
+      print(datos);
+    }else{
+      Fluttertoast.showToast(msg: "Las contraseñas no coinciden",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: user,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.account_circle),
-                    hintText: "Usuario",
+                    hintText: "E-mail",
                   ),
                 )
             ),
@@ -67,11 +104,13 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             Container(
               child:  ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  registrarUsuario();
+                },
                 child: const Text('Registrate'),
               ),
             ),
-            Container(
+            /*Container(
               child:  ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll<Color>(Colors.white10),
@@ -81,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
                 child: const Text('Cancelar'),
               ),
-            ),
+            ),*/
           ],
         )
        ),
