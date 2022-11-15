@@ -11,7 +11,14 @@ class RegisterBDUser extends StatefulWidget {
 class _RegisterBDUserState extends State<RegisterBDUser> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Actualizar informacion"),
+        ),
+        body: Center(
+        child: Container()
+        )
+
     );
   }
 }
