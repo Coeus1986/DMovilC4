@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:projectc4/pages/detail_page.dart';
 import 'package:projectc4/pages/list_page.dart';
 import 'package:projectc4/pages/register_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,8 +14,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  FirebaseAuth firebaseAuth=FirebaseAuth.instance;
   final user=TextEditingController();
   final password=TextEditingController();
+  String usu="";
+  String cla="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,12 +64,22 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Container(
                     child:  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListsPage())
-                        );
+                      onPressed: async () {
+                        usu=user.text;
+                        cla=password.text;
+                        try{
+                          final datos=await firebaseAuth.signInWithEmailAndPassword(
+                              email: usu, password: cla);
+                          print(datos);
+                          if(datos!=null){
+                            //print(usu);
+                            var k=(FirebaseAuth.instance.currentUser?.uid);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ListsPage())
+                            );
+                          }
+                        }catch(e){
+                          Fluttertoast.showToast(msg:"Datos no se encontraron",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.TOP_LEFT);
+                        }
                       },
                       child: const Text('Iniciar Sesión'),
                     ),
