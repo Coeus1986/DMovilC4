@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projectc4/pages/registerbduser.dart';
+import 'package:projectc4/pages/login_page.dart';
 
 import '../repository/registrousuariofirebase.dart';
 
@@ -43,7 +44,9 @@ class _RegisterPageState extends State<RegisterPage> {
         var pk=datos;
         print('Datos de la PK${pk}');
         Fluttertoast.showToast(msg: "Datos registrados",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterBDUser(pk)));
+        //De momento redireccionamiento a login page
+        //Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterBDUser(pk)));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
       }
       print(datos);
     }else{
