@@ -22,6 +22,22 @@ class _RegisterBDUserState extends State<RegisterBDUser> {
   final _correo=TextEditingController();
   final _celular=TextEditingController();
 
+  void crearUsuario()async{
+    if( "${_nombre.text}"== "" || "${_apellido.text}"== "" || "${_celular.text}"== ""){
+      Fluttertoast.showToast(msg: "Faltan campos por diligenciar",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+    }
+    else{
+      final idusuario=widget.iduser;
+      var usuario=Usuario(idusuario,_nombre.text,_apellido.text,_celular.text);
+      // _registrarUsuario(usuario);
+      var resultado=await objufb.crearUsuario(usuario);
+
+      Fluttertoast.showToast(msg: "Datos guardados",toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
+      Navigator.push(context,MaterialPageRoute(builder: (context)=>LoginPage()));
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +80,7 @@ class _RegisterBDUserState extends State<RegisterBDUser> {
                     controller: _celular,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.phone),
-                      hintText: "E-mail",
+                      hintText: "Celular",
                     ),
                   ),
 
@@ -72,15 +88,16 @@ class _RegisterBDUserState extends State<RegisterBDUser> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: ()async{
-                        final idusuario=widget.iduser;
+                      //onPressed: ()async{
+                      onPressed: () {
+                        crearUsuario();
+                        /*final idusuario=widget.iduser;
                         var usuario=Usuario(idusuario,_nombre.text,_apellido.text,_celular.text);
                         // _registrarUsuario(usuario);
                         var resultado=await objufb.crearUsuario(usuario);
-
                         Fluttertoast.showToast(msg: "Datos guardados",toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
                         Navigator.push(context,MaterialPageRoute(builder: (context)=>LoginPage()));
-
+                        */
                       },
                       child: Text("Registrate"),
                     ),

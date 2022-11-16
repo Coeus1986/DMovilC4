@@ -20,8 +20,10 @@ class _RegisterPageState extends State<RegisterPage> {
   String usu="";
   String cla="";
   void registrarUsuario()async{
-
-    if(password.value == password2.value){
+    if( "${user.text}"== "" || "${password.text}"== "" || "${password2.text}"== ""){
+      Fluttertoast.showToast(msg: "Faltan campos por diligenciar",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
+    }
+    else if(password.value == password2.value){
       usu=user.text;
       cla=password.text;
       final datos=await objetorufb.registrarusuarios(usu, cla);
