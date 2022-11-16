@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^4.1.1
   fluttertoast: ^8.1.1
   cloud_firestore: ^4.0.4
+  flutter_launcher_icons: ^0.11.0
   flutter:
     sdk: flutter
 
@@ -41,6 +42,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/Logo.png"
+  #adaptive_icon_background: "assets/logo.png"
+  #adaptive_icon_foreground: "assets/logo.png"
 dev_dependencies:
   flutter_test:
     sdk: flutter
