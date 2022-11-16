@@ -45,8 +45,8 @@ class _RegisterPageState extends State<RegisterPage> {
         print('Datos de la PK${pk}');
         Fluttertoast.showToast(msg: "Datos registrados",toastLength: Toast.LENGTH_SHORT,gravity:ToastGravity.CENTER);
         //De momento redireccionamiento a login page
-        //Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterBDUser(pk)));
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterBDUser(pk)));
+        //Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
       }
       print(datos);
     }else{
