@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectc4/models/sitiosturisticos.dart';
+import 'package:projectc4/repository/image_full_screen_wrapper_widget.dart';
 
 class DetailPage extends StatefulWidget {
   final SitiosTuristicos sitiosturisticos;
@@ -10,8 +11,12 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+
+
+
   @override
   Widget build(BuildContext context) {
+    String file = widget.sitiosturisticos.imagen;
     return Scaffold(
       appBar: AppBar(
         title: Text("Detalles del Lugar"),
@@ -32,20 +37,18 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             Center(
-                child: Container(
+
+              child: Container(
                 padding: EdgeInsets.all(16.0),
-                  width: 200,
-                  height: 200,
-                  child: Image.network(
-                      widget.sitiosturisticos.imagen,
-                      width: 500,
-                      height: 250,
-                      fit:BoxFit.fill
-                  ),
-
-
-                    ),
-                ),
+                width: 200,
+                height: 200,
+                child: ImageFullScreenWrapperWidget(
+                  child: Image.network(file),
+                  dark: true,
+                  )
+                  
+              ),
+            ),
               Container(
                 child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

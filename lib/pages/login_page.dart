@@ -22,11 +22,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text("Conocer.com"),
-        ),
+        ),*/
         body: Center(
           child: Container(
+            padding: EdgeInsets.only(top: 150),
               width: 300,
               child: ListView(
                 padding: EdgeInsets.all(16.0),
