@@ -1,4 +1,4 @@
-class SitioTuristico{
+class SitiosTuristicos{
   String lugar="";
   String resumen="";
   String ciudad="";
@@ -8,8 +8,8 @@ class SitioTuristico{
   String temperatura="";
 
 
-  SitioTuristico(this.lugar, this.resumen, this.ciudad, this.departamento,
+  SitiosTuristicos(this.lugar, this.resumen, this.ciudad, this.departamento,
       this.imagen, this.descripcion, this.temperatura);
 
-  SitioTuristico.Empty();
+  SitiosTuristicos.Empty();
 }

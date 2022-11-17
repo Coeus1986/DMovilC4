@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projectc4/pages/detail_page.dart';
 
-import '../models/sitioturistico.dart';
+import '../models/sitiosturisticos.dart';
 
 class ListsPage extends StatefulWidget {
   const ListsPage({super.key});
@@ -54,8 +54,8 @@ class _ListsPageState extends State<ListsPage> {
                                       backgroundImage: NetworkImage(sitioturistico['imagen'])
                                     ),
                                     onTap: (){
-                                      //SitioTuristico sitioturistico=SitioTuristico(sitioturistico["lugar"], sitioturistico["apellido"], sitioturistico["correo"], sitioturistico["celular"], sitioturistico["imagen"], sitioturistico["descripcion"]);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailPage()));
+                                      SitiosTuristicos sitiosturisticos=SitiosTuristicos(sitioturistico['lugar'], sitioturistico['resumen'], sitioturistico['ciudad'], sitioturistico['departamento'], sitioturistico['imagen'], sitioturistico['descripcion'], sitioturistico['temperatura']);
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailPage(sitiosturisticos)));
                                     },
                                   ),
                                 ),
