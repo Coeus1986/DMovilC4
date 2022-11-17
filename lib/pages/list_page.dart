@@ -50,8 +50,8 @@ class _ListsPageState extends State<ListsPage> {
                                   child: ListTile(
                                     title: Text(sitioturistico['lugar']),
                                     subtitle: Text(sitioturistico['resumen']),
-                                    leading: Image.network(
-                                        sitioturistico['imagen']
+                                    leading: CircleAvatar(
+                                      backgroundImage: NetworkImage(sitioturistico['imagen'])
                                     ),
                                     onTap: (){
                                       //SitioTuristico sitioturistico=SitioTuristico(sitioturistico["lugar"], sitioturistico["apellido"], sitioturistico["correo"], sitioturistico["celular"], sitioturistico["imagen"], sitioturistico["descripcion"]);
