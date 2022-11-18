@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projectc4/models/sitiosturisticos.dart';
 import 'package:projectc4/repository/image_full_screen_wrapper_widget.dart';
 
@@ -17,6 +18,8 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     String file = widget.sitiosturisticos.imagen;
+    String glatitud = widget.sitiosturisticos.latitud;
+    String glongitud = widget.sitiosturisticos.longitud;
     return Scaffold(
       appBar: AppBar(
         title: Text("Detalles del Lugar"),
@@ -40,7 +43,7 @@ class _DetailPageState extends State<DetailPage> {
 
               child: Container(
                 padding: EdgeInsets.all(16.0),
-                width: 200,
+                width: 400,
                 height: 200,
                 child: ImageFullScreenWrapperWidget(
                   child: Image.network(file),
@@ -87,9 +90,39 @@ class _DetailPageState extends State<DetailPage> {
               child:Text(widget.sitiosturisticos.descripcion),
             ),
 
+            Container(
+              height: 400,
+            child:GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                    target: LatLng(double.parse(glatitud),double.parse(glongitud)),
+                    zoom:13
+                    ),
+                markers: _marcador()
+                ),
+            ),
+
         ],
        ),
       );
 
+
+
   }
+
+  Set<Marker> _marcador(){
+    String glatitud = widget.sitiosturisticos.latitud;
+    String glongitud = widget.sitiosturisticos.longitud;
+    var mar=Set<Marker>();
+    mar.add(Marker(
+        markerId:MarkerId(widget.sitiosturisticos.lugar),
+        position:LatLng(double.parse(glatitud),double.parse(glongitud)),
+        icon:BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        infoWindow:InfoWindow(
+          title: widget.sitiosturisticos.lugar,
+        )
+    ),
+    );
+    return mar;
+  }
+
 }

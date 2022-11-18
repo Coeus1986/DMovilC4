@@ -3,6 +3,8 @@ import 'package:projectc4/pages/register_page.dart';
 import 'package:projectc4/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:projectc4/pages/mapagoogle.dart';
+import 'package:projectc4/pages/list_page.dart';
 
 
 void main() async {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashPage(),
+      home: const ListsPage(),
     );
   }
 }

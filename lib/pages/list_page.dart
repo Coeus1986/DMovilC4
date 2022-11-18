@@ -54,7 +54,7 @@ class _ListsPageState extends State<ListsPage> {
                                       backgroundImage: NetworkImage(sitioturistico['imagen'])
                                     ),
                                     onTap: (){
-                                      SitiosTuristicos sitiosturisticos=SitiosTuristicos(sitioturistico['lugar'], sitioturistico['resumen'], sitioturistico['ciudad'], sitioturistico['departamento'], sitioturistico['imagen'], sitioturistico['descripcion'], sitioturistico['temperatura']);
+                                      SitiosTuristicos sitiosturisticos=SitiosTuristicos(sitioturistico['lugar'], sitioturistico['resumen'], sitioturistico['ciudad'], sitioturistico['departamento'], sitioturistico['imagen'], sitioturistico['descripcion'], sitioturistico['temperatura'],sitioturistico['latitud'],sitioturistico['longitud']);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailPage(sitiosturisticos)));
                                     },
                                   ),
