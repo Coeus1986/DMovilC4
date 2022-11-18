@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectc4/pages/detail_page.dart';
+import 'package:projectc4/pages/login_page.dart';
 
 import '../models/sitiosturisticos.dart';
 
@@ -10,7 +12,7 @@ class ListsPage extends StatefulWidget {
   @override
   State<ListsPage> createState() => _ListsPageState();
 }
-
+enum Menu{logOut}
 class _ListsPageState extends State<ListsPage> {
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,23 @@ class _ListsPageState extends State<ListsPage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text("Lista de Sitios Turisticos"),
+          actions: [
+            PopupMenuButton(
+              onSelected: (Menu item){
+                setState(() {
+                  if(item==Menu.logOut){
+                    FirebaseAuth.instance.signOut();
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                  }
+                });
+              },
+              itemBuilder: (BuildContext context)=><PopupMenuEntry<Menu>>[
+                PopupMenuItem(value: Menu.logOut,
+                  child: Text("Cerrar Sesión"),
+                )
+              ],
+            )
+          ],
         ),
 
         body: Padding(
