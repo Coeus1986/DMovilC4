@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:projectc4/models/sitiofavorito.dart';
+import 'package:projectc4/pages/lista_favoritos.dart';
 import 'package:projectc4/pages/register_page.dart';
 import 'package:projectc4/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,9 +11,14 @@ import 'package:projectc4/pages/mapagoogle.dart';
 import 'package:projectc4/pages/list_page.dart';
 
 
-void main() async {
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform);
+  await Hive.initFlutter();
+  Hive.registerAdapter(SitioFavoritoAdapter());
+  await Hive.openBox<SitioFavorito>('bd');
+
   runApp(const MyApp());
 }
 

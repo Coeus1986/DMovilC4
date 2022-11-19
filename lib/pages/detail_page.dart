@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projectc4/Boxes.dart';
+import 'package:projectc4/models/sitiofavorito.dart';
 import 'package:projectc4/models/sitiosturisticos.dart';
 import 'package:projectc4/repository/image_full_screen_wrapper_widget.dart';
 
@@ -13,7 +16,16 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
 
-
+void _favoritos()async{
+  var sitiofavorito=SitioFavorito()
+  ..sitio=widget.sitiosturisticos.lugar
+  ..imagen=widget.sitiosturisticos.imagen
+  ..descripcion=widget.sitiosturisticos.descripcion
+  ..latitud=widget.sitiosturisticos.latitud
+  ..longitud=widget.sitiosturisticos.longitud;
+  final box=Boxes.getfavoritobox();
+  box.add(sitiofavorito);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +34,7 @@ class _DetailPageState extends State<DetailPage> {
     String glongitud = widget.sitiosturisticos.longitud;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detalles del Lugar"),
+        title: Text(widget.sitiosturisticos.lugar),
       ),
       body: ListView(
           children: [
@@ -82,12 +94,28 @@ class _DetailPageState extends State<DetailPage> {
                         Text(widget.sitiosturisticos.temperatura),
                       ],
                     ),
+                  Column(
+                    children: [
+
+                      IconButton(
+                          onPressed: (){
+                            Fluttertoast.showToast(msg: "Tu favorito",toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
+                          },
+                          icon:Icon(Icons.favorite),
+                          color: Colors.grey,
+                      ),
+                    ],
+                  ),
                   ],
                 ),
               ),
             Container(
               padding: EdgeInsets.all(16.0),
-              child:Text(widget.sitiosturisticos.descripcion),
+              child:Text(widget.sitiosturisticos.descripcion,
+                  style: TextStyle(
+                fontSize: 16,
+                  ),
+              ),
             ),
 
             Container(
