@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectc4/pages/detail_page.dart';
+import 'package:projectc4/pages/homepage.dart';
 import 'package:projectc4/pages/list_page.dart';
 import 'package:projectc4/pages/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -75,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                           if(datos!=null){
                             //print(usu);
                             var k=(FirebaseAuth.instance.currentUser?.uid);
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ListsPage())
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage())
                             );
                           }
                         }catch(e){
