@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:projectc4/Boxes.dart';
+import 'package:projectc4/boxes.dart';
 import 'package:projectc4/models/sitiofavorito.dart';
 import 'package:projectc4/models/sitiosturisticos.dart';
 import 'package:projectc4/repository/image_full_screen_wrapper_widget.dart';
@@ -24,9 +24,42 @@ void _favoritos()async{
   ..latitud=widget.sitiosturisticos.latitud
   ..longitud=widget.sitiosturisticos.longitud;
   final box=Boxes.getfavoritobox();
-  box.add(sitiofavorito);
+  box.values.forEach((element) {
+    if(element.sitio == sitiofavorito.sitio){
+      isFavorite = true;
+    }
+  });
+  if (isFavorite){
+    Fluttertoast.showToast(msg: "Eliminado",toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
+    box.delete(sitiofavorito.sitio);
+  }else{
+    Fluttertoast.showToast(msg: "Agregado",toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
+    box.put(sitiofavorito.sitio, sitiofavorito);
+  }
+  setState(() {
+    isFavorite = !isFavorite;
+  });
 }
 
+var isFavorite = false;
+
+@override
+void initState(){
+  _getLocalSite();
+  super.initState();
+}
+
+void _getLocalSite(){
+  var sitiofavorito2=SitioFavorito()
+    ..sitio=widget.sitiosturisticos.lugar;
+
+  final box = Boxes.getfavoritobox();
+  box.values.forEach((element) {
+    if(element.sitio == sitiofavorito2.sitio){
+      isFavorite = true;
+    }
+  });
+}
   @override
   Widget build(BuildContext context) {
     String file = widget.sitiosturisticos.imagen;
@@ -98,11 +131,12 @@ void _favoritos()async{
                     children: [
 
                       IconButton(
-                          onPressed: (){
-                            Fluttertoast.showToast(msg: "Tu favorito",toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
-                          },
-                          icon:Icon(Icons.favorite),
-                          color: Colors.grey,
+                          icon:Icon(
+                              isFavorite ? Icons.favorite : Icons.favorite_border),
+                          color: Colors.red,
+                        onPressed: (){
+                          _favoritos();
+                        },
                       ),
                     ],
                   ),

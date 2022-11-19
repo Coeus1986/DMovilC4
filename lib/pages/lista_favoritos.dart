@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:projectc4/models/sitiofavorito.dart';
-import  'package:projectc4/Boxes.dart';
+import 'package:projectc4/boxes.dart';
 import 'package:projectc4/models/sitiosturisticos.dart';
 import 'package:projectc4/pages/detail_page.dart';
 
@@ -41,20 +41,23 @@ class _ListaFavoritosState extends State<ListaFavoritos> {
         ],
       ),
       body: _builListView(),
-      bottomSheet: Text('This is a bottom sheet'),
 
     );
 
   }
+
   Widget _builListView(){
+
     return ValueListenableBuilder<Box<SitioFavorito>>(
       valueListenable: Boxes.getfavoritobox().listenable(),
     builder:(context,box,_){
+
         final sitioBox =box.values.toList().cast<SitioFavorito>();
         return ListView.builder(
             itemCount: sitioBox.length,
             itemBuilder:(BuildContext context, i) {
               final pass = sitioBox[i];
+              String file = pass.imagen ?? "";
 
               return Container(
                 margin: EdgeInsets.only(top: 20),
@@ -69,8 +72,13 @@ class _ListaFavoritosState extends State<ListaFavoritos> {
                           subtitle: Text(pass.descripcion ?? ""),
                           leading: CircleAvatar(
                               backgroundImage: NetworkImage(
-                                  "pass.imagen")
+                                  file)
                           ),
+                          onLongPress: (){
+                            setState(() {
+                              pass.delete();
+                            });
+                          },
 
                         ),
                       ),
