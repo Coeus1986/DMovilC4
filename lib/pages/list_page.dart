@@ -20,24 +20,26 @@ class _ListsPageState extends State<ListsPage> {
         appBar: AppBar(
           title: Text("Lista de Sitios Turisticos"),
         ),
-
         body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection("sitioturistico").snapshots(),
-                builder: (context, snapshot){
-                  if(snapshot.hasError){
+                stream: FirebaseFirestore.instance
+                    .collection("sitioturistico")
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
                     return Text("Error en la consulta");
                   }
-                  if(!snapshot.hasData){
+                  if (!snapshot.hasData) {
                     return Text("No existen datos");
                   }
 
                   child:
                   return ListView.builder(
                       itemCount: snapshot.data?.docs.length,
-                      itemBuilder: (context,index){
-                        QueryDocumentSnapshot sitioturistico=snapshot.data!.docs[index];
+                      itemBuilder: (context, index) {
+                        QueryDocumentSnapshot sitioturistico =
+                            snapshot.data!.docs[index];
 
                         return Container(
                           margin: EdgeInsets.only(top: 20),
@@ -51,11 +53,23 @@ class _ListsPageState extends State<ListsPage> {
                                     title: Text(sitioturistico['lugar']),
                                     subtitle: Text(sitioturistico['resumen']),
                                     leading: CircleAvatar(
-                                      backgroundImage: NetworkImage(sitioturistico['imagen'])
-                                    ),
-                                    onTap: (){
-                                      SitiosTuristicos sitiosturisticos=SitiosTuristicos(sitioturistico['lugar'], sitioturistico['resumen'], sitioturistico['ciudad'], sitioturistico['departamento'], sitioturistico['imagen'], sitioturistico['descripcion'], sitioturistico['temperatura']);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailPage(sitiosturisticos)));
+                                        backgroundImage: NetworkImage(
+                                            sitioturistico['imagen'])),
+                                    onTap: () {
+                                      SitiosTuristicos sitiosturisticos =
+                                          SitiosTuristicos(
+                                              sitioturistico['lugar'],
+                                              sitioturistico['resumen'],
+                                              sitioturistico['ciudad'],
+                                              sitioturistico['departamento'],
+                                              sitioturistico['imagen'],
+                                              sitioturistico['descripcion'],
+                                              sitioturistico['temperatura']);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => DetailPage(
+                                                  sitiosturisticos)));
                                     },
                                   ),
                                 ),
@@ -63,11 +77,8 @@ class _ListsPageState extends State<ListsPage> {
                             ),
                           ),
                         );
-                      }
-                  );
-                }
-            )
-        ),
+                      });
+                })),
       ),
     );
   }
