@@ -14,133 +14,128 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  FirebaseAuth firebaseAuth=FirebaseAuth.instance;
-  final user=TextEditingController();
-  final password=TextEditingController();
-  String usu="";
-  String cla="";
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final user = TextEditingController();
+  final password = TextEditingController();
+  String usu = "";
+  String cla = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        /*appBar: AppBar(
+      /*appBar: AppBar(
           title: Text("Conocer.com"),
         ),*/
-        body: Center(
-          child: Container(
+      body: Center(
+        child: Container(
             padding: EdgeInsets.only(top: 150),
-              width: 300,
-              child: ListView(
-                padding: EdgeInsets.all(16.0),
-                children: [
-                  Container(
-
-                    width: 200,
-                    height: 200,
-                    decoration:BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("assets/images/Logo.png")
-                        )
-                    ),
-                  ),
-
-                  Container(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child:TextField(
-                        controller: user,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.account_circle),
-                          hintText: "Usuario",
-                        ),
-                      )
-                  ),
-                  Container(
-                      child: TextField(
-                        obscureText: true,
-                        controller: password,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.key),
-                            hintText: "Contraseña"
-                        ),
-                      )
-                  ),
-                  Container(
-                    child:  ElevatedButton(
-                      onPressed: () async {
-                        usu=user.text;
-                        cla=password.text;
-                        try{
-                          final datos=await firebaseAuth.signInWithEmailAndPassword(
-                              email: usu, password: cla);
-                          print(datos);
-                          if(datos!=null){
-                            //print(usu);
-                            var k=(FirebaseAuth.instance.currentUser?.uid);
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ListsPage())
-                            );
-                          }
-                        }catch(e){
-                          Fluttertoast.showToast(msg:"Datos no se encontraron",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.TOP_LEFT);
-                        }
-                      },
-                      child: const Text('Iniciar Sesión'),
-                    ),
-                  ),
-                  Container(
-                    child:  ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.white10),
+            width: 300,
+            child: ListView(
+              padding: EdgeInsets.all(16.0),
+              children: [
+                Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/Logo.png"))),
+                ),
+                Container(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: TextField(
+                      controller: user,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.account_circle),
+                        hintText: "Usuario",
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterPage())
-                        );
-                      },
-                      child: const Text('Registrate'),
+                    )),
+                Container(
+                    child: TextField(
+                  obscureText: true,
+                  controller: password,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.key), hintText: "Contraseña"),
+                )),
+                Container(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      usu = user.text;
+                      cla = password.text;
+                      try {
+                        final datos =
+                            await firebaseAuth.signInWithEmailAndPassword(
+                                email: usu, password: cla);
+                        print(datos);
+                        if (datos != null) {
+                          //print(usu);
+                          var k = (FirebaseAuth.instance.currentUser?.uid);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ListsPage()));
+                        }
+                      } catch (e) {
+                        Fluttertoast.showToast(
+                            msg: "Datos no se encontraron",
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.TOP_LEFT);
+                      }
+                    },
+                    child: const Text('Iniciar Sesión'),
+                  ),
+                ),
+                Container(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.white10),
                     ),
-                  )
-
-                ],
-              )
-          ),
-        ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()));
+                    },
+                    child: const Text('Registrate'),
+                  ),
+                )
+              ],
+            )),
+      ),
     );
-
   }
 }
 
-
-Widget botonInicio(){
+Widget botonInicio() {
   return ElevatedButton(
     style: TextButton.styleFrom(
       backgroundColor: Colors.black,
     ),
-    onPressed:(){
+    onPressed: () {
       print("Clic en boton Ingresar");
     },
-    child: Text("Inicio",
+    child: Text(
+      "Inicio",
       style: TextStyle(
         fontSize: 12,
-        color:Colors.white,
+        color: Colors.white,
       ),
     ),
   );
 }
 
-Widget botonRegistro(){
+Widget botonRegistro() {
   return ElevatedButton(
     style: TextButton.styleFrom(
       backgroundColor: Colors.black,
     ),
-    onPressed:(){
+    onPressed: () {
       print("Clic en boton Ingresar");
     },
-    child: Text("Registrate",
+    child: Text(
+      "Registrate",
       style: TextStyle(
         fontSize: 12,
       ),
     ),
   );
 }
-

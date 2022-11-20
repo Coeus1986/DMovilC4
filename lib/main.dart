@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+/*class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
@@ -87,4 +87,4 @@ class Inicio extends StatelessWidget {
       ),
     ));
   }
-}
+}*/
