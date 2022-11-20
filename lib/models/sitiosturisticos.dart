@@ -5,7 +5,7 @@ class SitiosTuristicos {
   String departamento = "";
   String imagen = "";
   String descripcion = "";
-  String temperatura = ""
+  String temperatura = "";
   //String latitud="";
   //String longitud="";
 
