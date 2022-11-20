@@ -58,15 +58,14 @@ class _ListsPageState extends State<ListsPage> {
                                     onTap: () {
                                       SitiosTuristicos sitiosturisticos =
                                           SitiosTuristicos(
-                                              sitioturistico['lugar'],
-                                              sitioturistico['resumen'],
-                                              sitioturistico['ciudad'],
-                                              sitioturistico['departamento'],
-                                              sitioturistico['imagen'],
-                                              sitioturistico['descripcion'],
-                                              sitioturistico['temperatura'],
-                                              sitioturistico['temperatura'],
-                                              sitioturistico['temperatura']);
+                                        sitioturistico['lugar'],
+                                        sitioturistico['resumen'],
+                                        sitioturistico['ciudad'],
+                                        sitioturistico['departamento'],
+                                        sitioturistico['imagen'],
+                                        sitioturistico['descripcion'],
+                                        sitioturistico['temperatura'],
+                                      );
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
